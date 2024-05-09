@@ -1,0 +1,25 @@
+
+bar_gas_cost_cooling={"gas_cost_cooling":gas_cost_cooling,
+              "level1":list_l1,
+              "level2":list_l2,
+              "level3":list_l3,
+              "level4":list_l4
+    }
+bar_gas_cost_cooling_df=pd.DataFrame(bar_gas_cost_cooling)
+print (bar_gas_cost_cooling_df)
+
+gas_cash_list_cooling=[]
+
+for index,row in bar_gas_cost_cooling_df.iterrows():
+    print (list(row))
+    sub_list=list(row)
+    if (sub_list[0]<sub_list[1]):
+        gas_cash=sub_list[0]*price0 
+    elif (sub_list[1]<sub_list[0] and sub_list[0]<sub_list[2]):
+        gas_cash=sub_list[1]*price0+(sub_list[0]-sub_list[1])*price1 
+    elif (sub_list[2]<sub_list[0]<sub_list[3]):
+        gas_cash=sub_list[1]*price0+(sub_list[2]-sub_list[1])*price1+(sub_list[0]-sub_list[2])*price2
+    elif (sub_list[3]<sub_list[0]<sub_list[4]):
+        gas_cash=sub_list[1]*price0+(sub_list[2]-sub_list[1])*price1+(sub_list[3]-sub_list[2])*price2+(sub_list[0]-sub_list[3])*price3
+    gas_cash_list_cooling.append(gas_cash)
+print (gas_cash_list_cooling)
